@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+
+
 <div class="container">
 	
 	<div class="card">
@@ -26,7 +28,20 @@
 					<td>{{ $category->id }}</td>
 					<td>{{ $category->name }}</td>
 					<td>{{ $category->slug }}</td>
-					<td></td>
+					<td>
+         {!!Form::open(['route'=>['categories.destroy',$category],
+		   'method'=>'DELETE',
+		   'onsubmit'=>'return confirm("Estas seguro que quieres eliminar?")'
+		  ])!!}
+
+			<a class="btn btn-primary"  href="{{route('categories.edit',$category)}}">EDITAR</a>
+
+			{!! Form::submit('ELIMINAR',['class'=>'btn btn-danger']) !!}
+
+			{!! Form::close() !!}
+
+
+					</td>
 				</tr>
 			@empty
 			    <tr><td colspan="4">NO HAY REGISTROS</td></tr>

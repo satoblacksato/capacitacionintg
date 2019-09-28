@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Catalogs;
 use App\Core\Eloquent\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
+use Facades\App\Core\Facades\AlertCustom;
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-     $categories=Category::paginate(1);
+     AlertCustom::success('inicio');
+
+     $categories=Category::paginate(3);
       return view('categories.index',compact('categories'));
 
     /*
@@ -43,9 +47,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+    //  Category::create($request->all());
+      //Category::create($request->only(['name','description']));
+        Category::create($request->validated());
+        return redirect()->route('categories.index');
+
     }
 
     /**
@@ -67,7 +75,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit',compact('category'));
     }
 
     /**
@@ -77,9 +85,11 @@ class CategoryController extends Controller
      * @param  \App\Core\Eloquent\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+       $category->fill($request->validated());
+       $category->save();
+       return redirect()->route('categories.index');
     }
 
     /**
@@ -90,6 +100,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
     }
 }
