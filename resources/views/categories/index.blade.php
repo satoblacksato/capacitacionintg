@@ -16,6 +16,16 @@
 
 		<hr/>
 
+	    {!!Form::open(['method'=>'GET','route'=>'categories.index'])!!}
+	    	{!! Form::text('filter',
+	    			request()->get('filter'),
+	    			['class'=>'form-control',
+	    			'placeholder'=>'Buscar nombre de categoria']) 
+	    	!!}
+	    {!!Form::close()!!}
+
+		
+
 		<table class="table">
 			<tr>
 				<th>ID</th>

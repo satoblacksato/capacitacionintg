@@ -1,5 +1,16 @@
  <div class="container"> 
-        <div class="alert alert-primary" role="alert">
-          A simple primary alert—check it out!
-        </div>
+      
+    @if (session('success'))
+      	  <div class="alert alert-primary" role="alert">
+        	  {{session('success')}}
+          </div>
+    @endif
+
+
+ 	@if (session('error'))
+      	  <div class="alert alert-danger" role="alert">
+        	  {{session('error')}}
+          </div>
+    @endif
+
 </div>

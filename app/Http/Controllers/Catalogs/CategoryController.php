@@ -17,9 +17,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-     AlertCustom::success('inicio');
-
-     $categories=Category::paginate(3);
+     $categories=
+        Category::where('name',
+                        'ILIKE',
+                         "%".request()->get('filter')."%")
+        ->paginate(3);
+      
       return view('categories.index',compact('categories'));
 
     /*
@@ -52,6 +55,7 @@ class CategoryController extends Controller
     //  Category::create($request->all());
       //Category::create($request->only(['name','description']));
         Category::create($request->validated());
+        AlertCustom::success('Guardado correctamente');
         return redirect()->route('categories.index');
 
     }
@@ -89,6 +93,7 @@ class CategoryController extends Controller
     {
        $category->fill($request->validated());
        $category->save();
+       AlertCustom::success('Actualizado correctamente');
        return redirect()->route('categories.index');
     }
 
@@ -101,6 +106,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+        AlertCustom::success('Eliminado correctamente');
         return redirect()->route('categories.index');
     }
 }
