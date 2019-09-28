@@ -12,6 +12,8 @@
 	    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 	    <a href="{{ route('categories.index') }}" class="btn btn-primary">REGRESAR</a>
 
+
+
 		
 		{!! Form::open() !!}
 				{!! Field::text('name',null,['label'=>'Nombre','placeholder'=>'Ingrese el nombre']) !!}
