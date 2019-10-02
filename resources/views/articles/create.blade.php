@@ -25,7 +25,7 @@
 				   ['label'=>'Categoria','empty'=>'-SELECCIONE-'])
 !!}
 
-{!! Field::file('resources',['multiple'=>true,'label'=>'Recursos/Imagenes','accept'=>'image/*']) !!}
+{!! Field::file('resources[]',['multiple'=>true,'label'=>'Recursos/Imagenes','accept'=>'image/*']) !!}
 
 {!! Form::submit('GUARDAR', ['class'=>'btn btn-primary btn-block']) !!}
 

@@ -13,4 +13,14 @@
           </div>
     @endif
 
+    @if($errors->any())
+    	<div class="alertFooter alertFooter-danger">
+    		<ul>
+    			@foreach($errors->all() as $error)
+    				<li class="text-white">{{ $error }}</li>
+    			@endforeach
+    		</ul>    		
+    	</div>
+    @endif
+
 </div>

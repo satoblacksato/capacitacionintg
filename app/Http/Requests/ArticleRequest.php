@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\ImagesRule;
 
 class ArticleRequest extends FormRequest
 {
@@ -27,8 +28,7 @@ class ArticleRequest extends FormRequest
            'name'=>'required|min:7',
            'description'=>'required|min:7|max:200',
            'category_id'=>'required|numeric|exists:categories,id',
-           'resources'=>'required',
-           'resources.*'=>'image|mimes:jpeg,png'
+           'resources'=>['required',new ImagesRule()]
         ];
     }
 }

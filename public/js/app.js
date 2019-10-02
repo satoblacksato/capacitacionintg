@@ -49359,6 +49359,9 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+$(".alertFooter").fadeTo(2000, 2000).slideUp(800, function () {
+  $(".alertFooter").slideUp(800);
+});
 
 /***/ }),
 
@@ -49507,8 +49510,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/blacksato/capacitacion/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/blacksato/capacitacion/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/blacksato/capacitacionintg/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/blacksato/capacitacionintg/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
