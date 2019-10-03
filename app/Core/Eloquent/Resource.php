@@ -17,8 +17,9 @@ class Resource extends Model
     public function assign($uploadedFiles){
     	$arrResources=[];
     	foreach ($uploadedFiles as $key => $file) {
+    		$nameFile='IMG'.uniqid().'.'.$file->getClientOriginalExtension();
 
-    		$nameFile='IMG'.uniqid().'.png';
+            saveFile($nameFile,$file);
 
     		$arrResources[]=new Resource([
     			'name'=>$nameFile,

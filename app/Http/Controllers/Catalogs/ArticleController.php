@@ -41,6 +41,7 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         DB::transaction(function() use($request){
+
                 $objArticle=Article::create($request->validated());
                 $objArticle->resources()->saveMany(
                     (new Resource)->assign($request->file('resources'))

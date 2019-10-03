@@ -21,3 +21,9 @@ Auth::routes(['register'=>false]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('/get-file/{file}',function($file){
+    if(Storage::disk('public')->exists('photos-articles/'.$file)){
+  			return Response::make(Storage::disk('public')->get('photos-articles/'.$file), '200');
+    }
+})->name('get-image');
+
