@@ -36,3 +36,10 @@
 	</div>
 
 @endsection
+@push('jsCustom')
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          $('#description').richText();
+        });
+    </script>
+@endpush

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+
+	
+</head>
+<body>
+		<main>
+			<h1>{{ texto }}</h1>
+			<input type="text" v-model="texto">
+			{{ $data }}
+		</main>
+
+</body>
+<script type="text/javascript">
+		new Vue({
+			el:'main',
+			data:{
+				texto:'Hola mundo'
+			}
+		});
+	</script>
+</html>
