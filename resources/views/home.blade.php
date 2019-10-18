@@ -3,24 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div  class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                    <example-component></example-component>
-                    <article-list></article-list>
-
-                </div>
-            </div>
-        </div>
+        <h2>LISTADO DE ARTÍCULOS</h2>
+        <hr/>
+        <article-list></article-list>
     </div>
 </div>
 @endsection
