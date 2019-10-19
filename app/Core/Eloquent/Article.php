@@ -10,8 +10,17 @@ class Article extends Model
 {
     use Sluggable;
 
+   
     public function resources(){
     	return $this->hasMany(Resource::class,'article_id','id');
+    }
+
+     public function resourcesCover(){
+        return $this->hasMany(Resource::class,'article_id','id');
+    }
+
+     public function category(){
+        return $this->belongsTo(Category::class,'category_id','id');
     }
 
    protected $fillable = ['name','description','category_id'];

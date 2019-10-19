@@ -23,7 +23,19 @@
 </template>
 <script type="text/javascript">
 	export default{
-		
+		mounted(){
+			this.loadArticle();
+		},
+		data(){
+			return{
+				articles:null
+			}
+		},
+		methods:{
+			loadArticle(){
+				alert('Load');
+			}
+		}
 	}
 </script>
 <style type="text/css" scoped>
