@@ -11,6 +11,9 @@ window.Vue = require('vue');
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 
+import ElementUI from 'element-ui';
+Vue.use(ElementUI)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -39,3 +42,5 @@ const app = new Vue({
 $(".alertFooter").fadeTo(2000, 2000).slideUp(800, function(){
     $(".alertFooter").slideUp(800);
 });
+
+window.appVue=app;
