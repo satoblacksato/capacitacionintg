@@ -10,13 +10,16 @@ class Article extends Model
 {
     use Sluggable;
 
-   
+    protected $appends=['resource_cover'];
+
     public function resources(){
     	return $this->hasMany(Resource::class,'article_id','id');
     }
 
-     public function resourcesCover(){
-        return $this->hasMany(Resource::class,'article_id','id');
+     public function getResourceCoverAttribute(){
+      $obj= Resource::where('article_id',$this->id)
+                ->first();
+      return route('get-image',optional($obj)->name??'default.png') ;
     }
 
      public function category(){

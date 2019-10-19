@@ -1,18 +1,20 @@
 <template>
-	<div>
+	<div class="row">
 		 <b-card
-		    title="Card Title"
-		    img-src="https://picsum.photos/600/300/?image=25"
+		    v-for="(item,idx) in articles"
+		    v-bind:key="item"
+		    :title="item.name"
+		    :img-src="item.resource_cover"
 		    img-alt="Image"
 		    img-top
 		    tag="article"
 		    style="max-width: 20rem;"
-		    class="mb-2 padding-card">
+		    class="mb-2 padding-card col-md-4">
 		    <b-card-text>
-		      Some quick example text to build on the card title and make up the bulk of the card's content.
+		      {{ item.description }}
 		    </b-card-text>
 
-		    <b-button pill href="#" variant="primary">
+		    <b-button pill v-bind:href="`/articles/${item.id}`" variant="primary">
 		    		Detalle</b-button>
 
 		    <b-button pill href="#" variant="danger">
@@ -33,7 +35,10 @@
 		},
 		methods:{
 			loadArticle(){
-				alert('Load');
+				axios.get('/api/lists-articles')
+				.then((response)=>{
+					this.articles=response.data;
+				});
 			}
 		}
 	}
