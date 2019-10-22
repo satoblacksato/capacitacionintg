@@ -29,3 +29,12 @@ Route::get('/get-file/{file}',function($file){
     return Response::make(Storage::disk('public')->get('photos-articles/default.png'), '200');
 })->name('get-image');
 
+
+Route::get('test-mail',function(){
+	$user=\App\User::findOrFail(1); //cambiar el uno por tu id de la BD y verificar el email
+
+return	$user->notify(new \App\Notifications\SendCountArticle(
+		\App\Core\Eloquent\Article::count()
+	));/*
+	return (new \App\Mail\ArticlesMail('dato'))->render();*/
+});
