@@ -11,6 +11,11 @@ use Facades\App\Core\Facades\AlertCustom;
 
 class ArticleController extends Controller
 {
+    public function __construct(){
+        $this->passAbility('article');
+    }
+
+
     /**
      * Display a listing of the resource.
      *

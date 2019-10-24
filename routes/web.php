@@ -12,12 +12,19 @@
 */
 
 Route::get('/', function () {
-	event(new App\Events\PushArticle('hola'));
-    return view('welcome');
+
+		$actual = "NOMBRE,APELLIDO,EMAIL\n";
+		$actual.= "NOMBRE,APELLIDO,EMAIL";
+
+// Escribe el contenido al fichero
+	file_put_contents('/home/blacksato/capacitacionintg/texto.csv', $actual);
+
+	//event(new App\Events\PushArticle('hola'));
+    //return view('welcome');
 });
 
 
-Auth::routes(['register'=>false]);
+Auth::routes(['register'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -38,3 +45,53 @@ return	$user->notify(new \App\Notifications\SendCountArticle(
 	));/*
 	return (new \App\Mail\ArticlesMail('dato'))->render();*/
 });
+
+
+Route::get('enviar',function(){
+	$user=\App\User::findOrFail(1);
+	
+	Mail::to($user)
+		->queue(
+			new \App\Mail\ArticlesMail('dato')
+		);
+});
+
+Route::get('job',function(){
+ \App\Jobs\Sumar::dispatch(['n1'=>4,'n2'=>6]);
+});
+
+Route::get('roles-permisos',function(){
+
+	$admin=Bouncer::role()->firstOrCreate([
+    	'name' => 'admin',
+   		'title' => 'Administrador del Sistema',
+	]);
+
+	$ab1 = Bouncer::ability()->firstOrCreate([
+	    'name' => 'article-create',
+	    'title' => 'creacion de artículos',
+	]);
+
+	$ab2 = Bouncer::ability()->firstOrCreate([
+	    'name' => 'article-show',
+	    'title' => 'observa artículos',
+	]);
+
+	$ab3 = Bouncer::ability()->firstOrCreate([
+	    'name' => 'article-comentarios',
+	    'title' => 'comenta en los artículos',
+	]);
+
+
+	Bouncer::allow($admin)->to($ab1);
+	Bouncer::allow($admin)->to($ab2);
+	Bouncer::allow($admin)->to($ab3);
+
+	$user=\App\User::find(1);
+
+	Bouncer::assign('admin')->to($user);
+
+	return "Rol asignado";
+});
+
+//https://scotch.io/tutorials/introduction-to-laravel-dusk

@@ -9,3 +9,12 @@ function saveFile($namefile, $objFile){
 function currentUser(){
 	return auth()->user();
 }
+
+function authorizePutPost($method, $action){
+	if($method=='POST'){
+		return currentUser()->can($action.'-create');
+	}
+	if($method=='PUT'){
+		return currentUser()->can($action.'-update');
+	}
+}

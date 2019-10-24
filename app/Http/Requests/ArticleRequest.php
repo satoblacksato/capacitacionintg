@@ -14,7 +14,7 @@ class ArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+       return authorizePutPost(request()->method(), 'article');
     }
 
     /**

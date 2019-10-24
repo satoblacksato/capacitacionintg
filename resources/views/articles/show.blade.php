@@ -47,13 +47,18 @@
 
 			</div>
 			<div class="col-md-6" style="padding: 8px">
-				<div id="disqus_thread"></div>
+				@can('article-comentarios')
+					<div id="disqus_thread"></div>
+				@endcan
 			</div>
 			
 		</div>
 		
 	</div>
 @endsection
+
+@can('article-comentarios')
+
 @push('jsCustom')
 <script>
 
@@ -75,3 +80,5 @@ s.setAttribute('data-timestamp', +new Date());
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 @endpush
+
+@endcan

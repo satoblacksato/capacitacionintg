@@ -79,6 +79,7 @@
         </nav>
 
         <main class="py-4">
+            {{$menu }} - {{$hora}}
             
            @include('partials.alerts')
 

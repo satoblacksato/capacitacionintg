@@ -41,6 +41,7 @@ class SendCountArticle extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->level('error')
                     ->line('Se detectan '.$this->cant.' artículos en el sistema')
                     ->action('Click Aqui', url('/'))
                     ->line('Saludos Cordiales!');

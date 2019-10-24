@@ -10,4 +10,9 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function passAbility($name,$flag=false){
+        $this->middleware("can:$name-create", 
+        	['only' => ['create','store']]);
+    }
 }
